@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PlayComponent } from '../play/play.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,10 @@ import { PlayComponent } from '../play/play.component';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  title = "Card Game"
+  title = "Card Game";
+
+  constructor(public play: PlayComponent) {
+
+  }
 
 }

@@ -1,5 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-play',
@@ -12,11 +16,11 @@ export class PlayComponent {
   public postJsonValue: any;
 
   constructor(private http: HttpClient) {
-
   }
 
-  public getMethod() {
+  addCard() {
     this.http.get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1').subscribe((data) => {
+      this.getJsonValue = data;
       console.log(data);
     });
   }

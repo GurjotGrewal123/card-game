@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Injectable } from '@angular/core';
+import { DeckofcardsService } from '../services/deckofcards.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,20 +13,17 @@ import { Component, Injectable } from '@angular/core';
 })
 export class PlayComponent {
 
-  public cardDeck: any;
-
-  constructor(private http: HttpClient) {
-  }
-
-  addCard() {
-    this.http.get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1').subscribe((data) => {
-      this.cardDeck = data;
-      console.log(this.cardDeck);
-    });
-  }
-
   colourVisiblity = true;
   correctVisiblity = false;
+
+  constructor(private http: HttpClient, private cardService: DeckofcardsService) {
+  }
+
+  getDeck() {
+    this.cardService.getNewDeck().subscribe(deck => {
+      console.log(deck);
+    })
+  }
 
   toggleColour(blackBtn: boolean) {
 

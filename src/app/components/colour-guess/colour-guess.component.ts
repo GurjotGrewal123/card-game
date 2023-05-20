@@ -11,8 +11,15 @@ export class ColourGuessComponent extends PlayComponent {
 
   @Output() btnClick = new EventEmitter();
 
-  onClick() {
-    this.btnClick.emit();
+  public pressBlackBtn = false;
+
+  onClickBlack() {
+    this.pressBlackBtn = true;
+    this.btnClick.emit({ boolean: this.pressBlackBtn });
+  }
+
+  onClickRed() {
+    this.btnClick.emit({ boolean: this.pressBlackBtn });
   }
 
 }

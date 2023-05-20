@@ -1,5 +1,5 @@
 <div class="container">
     <h4>Let's Play!</h4>
-    <app-colour-guess *ngIf="colourVisiblity" (btnClick)="toggleColour()"></app-colour-guess>
+    <app-colour-guess *ngIf="colourVisiblity" (btnClick)="toggleColour($event)"></app-colour-guess>
     <app-correct-guess *ngIf="correctVisiblity"></app-correct-guess>
 </div>

@@ -12,23 +12,25 @@ import { Component, Injectable } from '@angular/core';
 })
 export class PlayComponent {
 
-  public getJsonValue: any;
-  public postJsonValue: any;
+  public cardDeck: any;
 
   constructor(private http: HttpClient) {
   }
 
   addCard() {
     this.http.get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1').subscribe((data) => {
-      this.getJsonValue = data;
-      console.log(data);
+      this.cardDeck = data;
+      console.log(this.cardDeck);
     });
   }
 
   colourVisiblity = true;
   correctVisiblity = false;
 
-  toggleColour() {
+  toggleColour(blackBtn: boolean) {
+
+    console.log(blackBtn);
+
     this.colourVisiblity = !this.colourVisiblity;
     this.correctVisiblity = !this.correctVisiblity;
   }

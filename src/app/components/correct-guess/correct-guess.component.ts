@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { PlayComponent } from '../play/play.component';
 
 @Component({
@@ -9,5 +9,10 @@ import { PlayComponent } from '../play/play.component';
 
 export class CorrectGuessComponent extends PlayComponent {
 
+  @Output() btnClick = new EventEmitter();
+
+  onClick() {
+
+  }
 
 }

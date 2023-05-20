@@ -17,8 +17,8 @@ export class DeckofcardsService {
         return deck;
     }
 
-    drawCard() {
-        return this.http.get<any>(`https://deckofcardsapi.com/api/deck/${this.deckId}/draw/?count=1`);
+    drawCard(token: string) {
+        return this.http.get<any>(`https://deckofcardsapi.com/api/deck/${token}/draw/?count=1`);
     }
 
     get deckId() {

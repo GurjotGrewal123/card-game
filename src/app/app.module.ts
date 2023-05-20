@@ -8,7 +8,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { PlayComponent } from './components/play/play.component';
 import { ColourGuessComponent } from './components/colour-guess/colour-guess.component';
 import { CorrectGuessComponent } from './components/correct-guess/correct-guess.component';
-import { CardComponent } from './components/card/card.component';
+import { IncorrectGuessComponent } from './components/incorrect-guess/incorrect-guess.component';
+import { NumberGuessComponent } from './components/number-guess/number-guess.component';
 
 const appRoutes = [
   { path: '', component: HeaderComponent },
@@ -23,7 +24,8 @@ const appRoutes = [
     PlayComponent,
     ColourGuessComponent,
     CorrectGuessComponent,
-    CardComponent,
+    IncorrectGuessComponent,
+    NumberGuessComponent,
 
   ],
   imports: [

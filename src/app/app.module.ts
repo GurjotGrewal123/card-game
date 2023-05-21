@@ -12,6 +12,8 @@ import { IncorrectGuessComponent } from './components/incorrect-guess/incorrect-
 import { NumberGuessComponent } from './components/number-guess/number-guess.component';
 import { SuitGuessComponent } from './components/suit-guess/suit-guess.component';
 import { WinnerComponent } from './components/winner/winner.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
 
 const appRoutes = [
   { path: '', component: HeaderComponent },
@@ -29,13 +31,14 @@ const appRoutes = [
     IncorrectGuessComponent,
     NumberGuessComponent,
     SuitGuessComponent,
-    WinnerComponent,
-
+    WinnerComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+    NoopAnimationsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

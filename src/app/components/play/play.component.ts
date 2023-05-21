@@ -26,6 +26,7 @@ export class PlayComponent {
   firstCardVal: number | string;
   secondCardVal: number | string;
   winner: boolean = false;
+  title = "Card Game";
 
 
   constructor(private http: HttpClient, private cardService: DeckofcardsService) {
@@ -171,7 +172,7 @@ export class PlayComponent {
         this.suitVisibility = false;
         this.winner = true;
       }
-      else if (suit.localeCompare("SPADES") == 0 && this.cards[2].suit.localeCompare("DIAMONDS") == 0) {
+      else if (suit.localeCompare("DIAMONDS") == 0 && this.cards[2].suit.localeCompare("DIAMONDS") == 0) {
         console.log("suit correct");
         this.suitVisibility = false;
         this.winner = true;

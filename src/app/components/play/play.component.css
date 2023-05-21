@@ -23,6 +23,11 @@ img {
     animation: fadeIn 3s;
 }
 
+img:hover {
+    height: 210px;
+    transition: 1s;
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;

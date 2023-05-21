@@ -2,7 +2,9 @@
     <h4>Let's Play!</h4>
     <app-colour-guess *ngIf="colourVisiblity" (btnClick)="toggleColour($event)"></app-colour-guess>
     <img *ngIf="!colourVisiblity" src="{{this.cards[0].image}}">
-    <app-correct-guess *ngIf="correctVisiblity"></app-correct-guess>
-    <app-incorrect-guess *ngIf="incorrectVisiblity"></app-incorrect-guess>
-    <app-number-guess *ngIf="numberVisibility"></app-number-guess>
+    <img *ngIf="this.cards.length == 2" src="{{this.cards[1].image}}">
+    <app-correct-guess *ngIf="correctVisiblity" (continueClick)="toggleContinue()"></app-correct-guess>
+    <app-incorrect-guess *ngIf="incorrectVisiblity" (incorrectClick)="toggleRestart()"></app-incorrect-guess>
+    <app-number-guess *ngIf="numberVisibility" (numberClick)="toggleNumber($event)"></app-number-guess>
+    <app-suit-guess *ngIf="suitVisibility" (suitClick)="toggleSuit($event)"></app-suit-guess>
 </div>

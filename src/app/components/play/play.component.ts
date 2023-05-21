@@ -20,6 +20,7 @@ export class PlayComponent {
   correctVisiblity = false;
   incorrectVisiblity = false;
   numberVisibility = false;
+  suitVisibility = false;
   cards: Card[] = [];
   colourOfCard: string;
 
@@ -43,10 +44,6 @@ export class PlayComponent {
     return $drawNewCard;
   }
 
-  reset() {
-    this.cards = [];
-  }
-
   toggleColour(blackBtn: boolean) {
 
     this.drawNewCard().subscribe(card => {
@@ -67,6 +64,50 @@ export class PlayComponent {
       }
     });
 
+  }
+
+  toggleContinue() {
+
+    if (this.cards.length == 1) {
+      this.numberVisibility = true;
+      this.correctVisiblity = false;
+    }
+    else if (this.cards.length == 2) {
+
+    }
+  }
+
+  toggleNumber(num: number) {
+    this.drawNewCard().subscribe(card => {
+      if (num == -1 && this.cards[1].value < this.cards[0].value) {
+        this.correctVisiblity = true;
+        this.numberVisibility = false;
+        console.log("correct");
+      }
+      else if (num == 0 && this.cards[1].value == this.cards[0].value) {
+        this.correctVisiblity = true;
+        this.numberVisibility = false;
+        console.log("correct");
+      }
+      else if (num == 1 && this.cards[1].value > this.cards[0].value) {
+        this.correctVisiblity = true;
+        this.numberVisibility = false;
+        console.log("correct");
+      }
+      else {
+        console.log("incorrect");
+        this.incorrectVisiblity = true;
+        this.numberVisibility = false;
+      }
+    });
+  }
+
+  toggleSuit(suit: string) {
+
+  }
+
+  toggleRestart() {
+    this.cards = [];
   }
 
 }

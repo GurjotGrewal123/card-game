@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-number-guess',
@@ -6,5 +6,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./number-guess.component.css']
 })
 export class NumberGuessComponent {
+
+  @Output() numberClick = new EventEmitter();
+
+
+  onClickLower() {
+    this.numberClick.emit(-1);
+  }
+
+  onClickEqual() {
+    this.numberClick.emit(0);
+  }
+
+  onClickHigher() {
+    this.numberClick.emit(1);
+  }
+
 
 }

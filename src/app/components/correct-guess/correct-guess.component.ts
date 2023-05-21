@@ -9,10 +9,10 @@ import { PlayComponent } from '../play/play.component';
 
 export class CorrectGuessComponent extends PlayComponent {
 
-  @Output() btnClick = new EventEmitter();
+  @Output() continueClick = new EventEmitter();
 
   onClick() {
-
+    this.continueClick.emit();
   }
 
 }

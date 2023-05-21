@@ -26,10 +26,19 @@ export class PlayComponent {
   firstCardVal: number | string;
   secondCardVal: number | string;
   winner: boolean = false;
-  title = "Card Game";
-
+  title: string = "Card Game";
+  wins: string | null;
 
   constructor(private http: HttpClient, private cardService: DeckofcardsService) {
+  }
+
+  ngOnInit() {
+    if (localStorage.getItem("wins") == null) {
+      this.wins = "0";
+    }
+    else {
+      this.wins = localStorage.getItem("wins");
+    }
   }
 
   getDeck() {
@@ -185,8 +194,21 @@ export class PlayComponent {
     });
   }
 
+  toggleWinRestart() {
+    this.toggleRestart();
+    this.wins = this.wins + "0";
+    localStorage.setItem("wins", this.wins);
+  }
+
   toggleRestart() {
     this.cards = [];
+  }
+
+  getWin() {
+    if (this.wins != null) {
+      return this.wins.length - 1;
+    }
+    return 0;
   }
 
 }

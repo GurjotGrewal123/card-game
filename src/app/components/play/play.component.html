@@ -3,6 +3,7 @@
 </header>
 <div class="gametable">
     <h4>Let's Play!</h4>
+    <h4>You have {{getWin()}} wins</h4>
     <div class="drawn-cards">
         <mat-grid-list cols="3" rowHeight="250px" [gutterSize]="'50px'">
             <mat-grid-tile colspan="1">
@@ -29,5 +30,5 @@
         <app-number-guess *ngIf="numberVisibility" (numberClick)="toggleNumber($event)"></app-number-guess>
         <app-suit-guess *ngIf="suitVisibility" (suitClick)="toggleSuit($event)"></app-suit-guess>
     </div>
-    <app-winner *ngIf="winner" (winnerClick)="toggleRestart()"></app-winner>
+    <app-winner *ngIf="winner" (winnerClick)="toggleWinRestart()"></app-winner>
 </div>

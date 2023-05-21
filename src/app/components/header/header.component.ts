@@ -7,9 +7,10 @@ import { PlayComponent } from '../play/play.component';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  title = "Card Game";
+  title: string = "Card Game";
 
   constructor(public play: PlayComponent) {
+
 
   }
 

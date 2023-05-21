@@ -23,6 +23,9 @@ export class PlayComponent {
   suitVisibility = false;
   cards: Card[] = [];
   colourOfCard: string;
+  firstCardVal: number | string;
+  secondCardVal: number | string;
+
 
   constructor(private http: HttpClient, private cardService: DeckofcardsService) {
   }
@@ -73,23 +76,60 @@ export class PlayComponent {
       this.correctVisiblity = false;
     }
     else if (this.cards.length == 2) {
+      this.suitVisibility = true;
+      this.correctVisiblity = false;
+    }
+    else if (this.cards.length == 3) {
 
     }
   }
 
   toggleNumber(num: number) {
     this.drawNewCard().subscribe(card => {
-      if (num == -1 && this.cards[1].value < this.cards[0].value) {
+
+      if (this.cards[0].value.toString().localeCompare("ACE") == 0) {
+        this.firstCardVal = 0;
+      }
+      else if (this.cards[0].value.toString().localeCompare("JACK") == 0) {
+        this.firstCardVal = 11;
+      }
+      else if (this.cards[0].value.toString().localeCompare("QUEEN") == 0) {
+        this.firstCardVal = 12;
+      }
+      else if (this.cards[0].value.toString().localeCompare("KING") == 0) {
+        this.firstCardVal = 13;
+      }
+      else {
+        this.firstCardVal = this.cards[0].value;
+      }
+
+      if (this.cards[1].value.toString().localeCompare("ACE") == 0) {
+        this.secondCardVal = 0;
+      }
+      else if (this.cards[1].value.toString().localeCompare("JACK") == 0) {
+        this.secondCardVal = 11;
+      }
+      else if (this.cards[1].value.toString().localeCompare("QUEEN") == 0) {
+        this.secondCardVal = 12;
+      }
+      else if (this.cards[1].value.toString().localeCompare("KING") == 0) {
+        this.secondCardVal = 13;
+      }
+      else {
+        this.secondCardVal = this.cards[1].value;
+      }
+
+      if (num == -1 && this.secondCardVal < this.firstCardVal) {
         this.correctVisiblity = true;
         this.numberVisibility = false;
         console.log("correct");
       }
-      else if (num == 0 && this.cards[1].value == this.cards[0].value) {
+      else if (num == 0 && this.secondCardVal == this.firstCardVal) {
         this.correctVisiblity = true;
         this.numberVisibility = false;
         console.log("correct");
       }
-      else if (num == 1 && this.cards[1].value > this.cards[0].value) {
+      else if (num == 1 && this.secondCardVal > this.firstCardVal) {
         this.correctVisiblity = true;
         this.numberVisibility = false;
         console.log("correct");

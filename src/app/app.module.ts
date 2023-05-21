@@ -11,6 +11,7 @@ import { CorrectGuessComponent } from './components/correct-guess/correct-guess.
 import { IncorrectGuessComponent } from './components/incorrect-guess/incorrect-guess.component';
 import { NumberGuessComponent } from './components/number-guess/number-guess.component';
 import { SuitGuessComponent } from './components/suit-guess/suit-guess.component';
+import { WinnerComponent } from './components/winner/winner.component';
 
 const appRoutes = [
   { path: '', component: HeaderComponent },
@@ -28,6 +29,7 @@ const appRoutes = [
     IncorrectGuessComponent,
     NumberGuessComponent,
     SuitGuessComponent,
+    WinnerComponent,
 
   ],
   imports: [

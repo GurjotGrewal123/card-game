@@ -1,14 +1,20 @@
 <div class="gametable">
     <h4>Let's Play!</h4>
     <div class="drawn-cards">
-        <mat-grid-list cols="3" rowHeight="400px" [gutterSize]="'50px'">
+        <mat-grid-list cols="3" rowHeight="250px" [gutterSize]="'50px'">
             <mat-grid-tile colspan="1">
+                <img *ngIf="colourVisiblity && !winner" class="img1"
+                    src="https://opengameart.org/sites/default/files/card%20back%20orange.png">
                 <img *ngIf="!colourVisiblity" src="{{this.cards[0].image}}">
             </mat-grid-tile>
             <mat-grid-tile colspan="1">
+                <img *ngIf="!winner && this.cards.length < 2" class="img1"
+                    src="https://opengameart.org/sites/default/files/card%20back%20orange.png">
                 <img *ngIf="this.cards.length >= 2" src="{{this.cards[1].image}}">
             </mat-grid-tile>
             <mat-grid-tile colspan="1">
+                <img *ngIf="!winner && this.cards.length < 3" class="img1"
+                    src="https://opengameart.org/sites/default/files/card%20back%20orange.png">
                 <img *ngIf="this.cards.length == 3" src="{{this.cards[2].image}}">
             </mat-grid-tile>
         </mat-grid-list>

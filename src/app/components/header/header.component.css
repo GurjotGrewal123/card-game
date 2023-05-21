@@ -34,3 +34,8 @@
 .main-pics {
     padding: 50px;
 }
+
+img:hover {
+    height: 260px;
+    transition: 1s;
+}

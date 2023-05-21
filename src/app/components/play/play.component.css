@@ -1,0 +1,17 @@
+mat-grid-tile {
+    background: #1CAC78;
+}
+
+mat-grid-list {
+    margin: 10px 50px;
+    min-width: 800px;
+}
+
+.drawn-cards {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.question-prompt {
+    margin-top: 1rem;
+}

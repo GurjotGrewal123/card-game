@@ -14,6 +14,8 @@ import { SuitGuessComponent } from './components/suit-guess/suit-guess.component
 import { WinnerComponent } from './components/winner/winner.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list';
+
 
 const appRoutes = [
   { path: '', component: HeaderComponent },
@@ -38,7 +40,8 @@ const appRoutes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     NoopAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

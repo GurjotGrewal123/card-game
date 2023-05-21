@@ -1,12 +1,24 @@
-<div class="container">
+<div class="gametable">
     <h4>Let's Play!</h4>
-    <app-colour-guess *ngIf="colourVisiblity" (btnClick)="toggleColour($event)"></app-colour-guess>
-    <img *ngIf="!colourVisiblity" src="{{this.cards[0].image}}">
-    <img *ngIf="this.cards.length >= 2" src="{{this.cards[1].image}}">
-    <img *ngIf="this.cards.length == 3" src="{{this.cards[2].image}}">
-    <app-correct-guess *ngIf="correctVisiblity" (continueClick)="toggleContinue()"></app-correct-guess>
-    <app-incorrect-guess *ngIf="incorrectVisiblity" (incorrectClick)="toggleRestart()"></app-incorrect-guess>
-    <app-number-guess *ngIf="numberVisibility" (numberClick)="toggleNumber($event)"></app-number-guess>
-    <app-suit-guess *ngIf="suitVisibility" (suitClick)="toggleSuit($event)"></app-suit-guess>
+    <div class="drawn-cards">
+        <mat-grid-list cols="3" rowHeight="400px" [gutterSize]="'50px'">
+            <mat-grid-tile colspan="1">
+                <img *ngIf="!colourVisiblity" src="{{this.cards[0].image}}">
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1">
+                <img *ngIf="this.cards.length >= 2" src="{{this.cards[1].image}}">
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1">
+                <img *ngIf="this.cards.length == 3" src="{{this.cards[2].image}}">
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+    <div class="question-prompt">
+        <app-colour-guess *ngIf="colourVisiblity" (btnClick)="toggleColour($event)"></app-colour-guess>
+        <app-correct-guess *ngIf="correctVisiblity" (continueClick)="toggleContinue()"></app-correct-guess>
+        <app-incorrect-guess *ngIf="incorrectVisiblity" (incorrectClick)="toggleRestart()"></app-incorrect-guess>
+        <app-number-guess *ngIf="numberVisibility" (numberClick)="toggleNumber($event)"></app-number-guess>
+        <app-suit-guess *ngIf="suitVisibility" (suitClick)="toggleSuit($event)"></app-suit-guess>
+    </div>
     <app-winner *ngIf="winner" (winnerClick)="toggleRestart()"></app-winner>
 </div>

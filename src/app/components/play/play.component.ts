@@ -16,15 +16,16 @@ import { tap } from "rxjs/operators";
 export class PlayComponent {
 
   token: string;
-  colourVisiblity = true;
-  correctVisiblity = false;
-  incorrectVisiblity = false;
-  numberVisibility = false;
-  suitVisibility = false;
+  colourVisiblity: boolean = true;
+  correctVisiblity: boolean = false;
+  incorrectVisiblity: boolean = false;
+  numberVisibility: boolean = false;
+  suitVisibility: boolean = false;
   cards: Card[] = [];
   colourOfCard: string;
   firstCardVal: number | string;
   secondCardVal: number | string;
+  winner: boolean = false;
 
 
   constructor(private http: HttpClient, private cardService: DeckofcardsService) {
@@ -41,9 +42,10 @@ export class PlayComponent {
   drawNewCard() {
     const $drawNewCard = this.cardService.drawCard(localStorage.getItem("token") as string).pipe(
       tap(card => {
-        this.cards = this.cards.concat(card.cards);
+        this.cards.push(card.cards[0]);
       })
     );
+    console.log(this.cards);
     return $drawNewCard;
   }
 
@@ -53,20 +55,16 @@ export class PlayComponent {
       if (blackBtn && (this.cards[0].suit.localeCompare("SPADES") == 0 || this.cards[0].suit.localeCompare("CLUBS") == 0)) {
         this.colourVisiblity = !this.colourVisiblity;
         this.correctVisiblity = !this.correctVisiblity;
-        console.log("correct");
       }
       else if (!blackBtn && (this.cards[0].suit.localeCompare("HEARTS") == 0 || this.cards[0].suit.localeCompare("DIAMONDS") == 0)) {
         this.colourVisiblity = !this.colourVisiblity;
         this.correctVisiblity = !this.correctVisiblity;
-        console.log("correct");
       }
       else {
-        console.log("incorrect");
         this.colourVisiblity = !this.colourVisiblity;
         this.incorrectVisiblity = !this.incorrectVisiblity;
       }
     });
-
   }
 
   toggleContinue() {
@@ -79,9 +77,7 @@ export class PlayComponent {
       this.suitVisibility = true;
       this.correctVisiblity = false;
     }
-    else if (this.cards.length == 3) {
 
-    }
   }
 
   toggleNumber(num: number) {
@@ -89,6 +85,9 @@ export class PlayComponent {
 
       if (this.cards[0].value.toString().localeCompare("ACE") == 0) {
         this.firstCardVal = 0;
+      }
+      else if (this.cards[0].value.toString().localeCompare("10") == 0) {
+        this.firstCardVal = 10;
       }
       else if (this.cards[0].value.toString().localeCompare("JACK") == 0) {
         this.firstCardVal = 11;
@@ -106,6 +105,9 @@ export class PlayComponent {
       if (this.cards[1].value.toString().localeCompare("ACE") == 0) {
         this.secondCardVal = 0;
       }
+      else if (this.cards[1].value.toString().localeCompare("10") == 0) {
+        this.secondCardVal = 10;
+      }
       else if (this.cards[1].value.toString().localeCompare("JACK") == 0) {
         this.secondCardVal = 11;
       }
@@ -118,6 +120,11 @@ export class PlayComponent {
       else {
         this.secondCardVal = this.cards[1].value;
       }
+
+      console.log(num == -1);
+      console.log(this.firstCardVal);
+      console.log(this.secondCardVal);
+      console.log(this.secondCardVal < this.firstCardVal);
 
       if (num == -1 && this.secondCardVal < this.firstCardVal) {
         this.correctVisiblity = true;
@@ -144,6 +151,37 @@ export class PlayComponent {
 
   toggleSuit(suit: string) {
 
+    this.drawNewCard().subscribe(card => {
+
+      console.log(suit);
+      console.log(this.cards[2].suit);
+
+      if (suit.localeCompare("SPADES") == 0 && this.cards[2].suit.localeCompare("SPADES") == 0) {
+        console.log("suit correct");
+        this.suitVisibility = false;
+        this.winner = true;
+      }
+      else if (suit.localeCompare("CLUBS") == 0 && this.cards[2].suit.localeCompare("CLUBS") == 0) {
+        console.log("suit correct");
+        this.suitVisibility = false;
+        this.winner = true;
+      }
+      else if (suit.localeCompare("HEARTS") == 0 && this.cards[2].suit.localeCompare("HEARTS") == 0) {
+        console.log("suit correct");
+        this.suitVisibility = false;
+        this.winner = true;
+      }
+      else if (suit.localeCompare("SPADES") == 0 && this.cards[2].suit.localeCompare("DIAMONDS") == 0) {
+        console.log("suit correct");
+        this.suitVisibility = false;
+        this.winner = true;
+      }
+      else {
+        this.incorrectVisiblity = true;
+        this.suitVisibility = false;
+        console.log("suit incorrect");
+      }
+    });
   }
 
   toggleRestart() {

@@ -1,13 +1,12 @@
 <div class="container">
     <h4>Let's Play!</h4>
     <app-colour-guess *ngIf="colourVisiblity" (btnClick)="toggleColour($event)"></app-colour-guess>
-    <span>
-        <img *ngIf="!colourVisiblity" src="{{this.cards[0].image}}">
-        <img *ngIf="this.cards.length == 2" src="{{this.cards[1].image}}">
-    </span>
+    <img *ngIf="!colourVisiblity" src="{{this.cards[0].image}}">
+    <img *ngIf="this.cards.length >= 2" src="{{this.cards[1].image}}">
+    <img *ngIf="this.cards.length == 3" src="{{this.cards[2].image}}">
     <app-correct-guess *ngIf="correctVisiblity" (continueClick)="toggleContinue()"></app-correct-guess>
     <app-incorrect-guess *ngIf="incorrectVisiblity" (incorrectClick)="toggleRestart()"></app-incorrect-guess>
     <app-number-guess *ngIf="numberVisibility" (numberClick)="toggleNumber($event)"></app-number-guess>
     <app-suit-guess *ngIf="suitVisibility" (suitClick)="toggleSuit($event)"></app-suit-guess>
-    <app-winner *ngIf="this.cards.length==3"></app-winner>
+    <app-winner *ngIf="winner" (winnerClick)="toggleRestart()"></app-winner>
 </div>

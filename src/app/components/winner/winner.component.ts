@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-winner',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./winner.component.css']
 })
 export class WinnerComponent {
+  @Output() winnerClick = new EventEmitter();
 
+  onClick() {
+    this.winnerClick.emit();
+  }
 }
